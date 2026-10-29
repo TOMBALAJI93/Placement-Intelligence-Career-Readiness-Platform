@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  :root {
+    --background: 6 6 8;
+    --foreground: 243 244 246;
+    --card: 13 13 18;
+    --card-foreground: 243 244 246;
+    --border: 28 28 35;
+    --primary: 45 212 191; /* Teal 400 */
+    --primary-foreground: 6 6 8;
+  }
+
+  body {
+    @apply font-sans antialiased overflow-x-hidden;
+    background-color: #060608;
+    color: #f3f4f6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight font-semibold;
+  }
+
+  /* Custom Futuristic Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(6, 6, 8, 0.5);
+    backdrop-filter: blur(10px);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(45, 212, 191, 0.2);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(45, 212, 191, 0.5);
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-card/60 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+  
+  .glass-card {
+    @apply bg-gradient-to-br from-white/[0.04] to-white/[0.01] border border-white/[0.08] rounded-2xl backdrop-blur-xl shadow-2xl transition-all duration-300;
+  }
+
+  .glass-card-glow-teal {
+    @apply hover:shadow-[0_0_30px_rgba(45,212,191,0.15)] hover:border-teal-500/30;
+  }
+
+  .glass-card-glow-indigo {
+    @apply hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] hover:border-indigo-500/30;
+  }
+
+  .glass-card-glow-purple {
+    @apply hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] hover:border-purple-500/30;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-indigo-400 to-purple-500;
+  }
+
+  .text-gradient-teal {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-emerald-400;
+  }
+
+  .text-gradient-purple {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400;
+  }
+  
+  .bg-gradient-glow {
+    background: radial-gradient(circle at center, rgba(45, 212, 191, 0.15) 0%, transparent 70%);
+  }
+
+  /* Shimmer / Skeleton Animation */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.03) 25%,
+      rgba(255, 255, 255, 0.08) 37%,
+      rgba(255, 255, 255, 0.03) 63%
+    );
+    background-size: 400% 100%;
+    animation: shimmer-anim 1.4s ease infinite;
+  }
+
+  @keyframes shimmer-anim {
+    0% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0 50%;
+    }
+  }
+
+  /* Scanning animation overlay */
+  .scan-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scan-effect::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(45, 212, 191, 0.1) 50%,
+      rgba(45, 212, 191, 0.2) 95%,
+      rgba(45, 212, 191, 0.4) 100%
+    );
+    animation: scan-anim 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    pointer-events: none;
+  }
+
+  @keyframes scan-anim {
+    0% {
+      top: -100%;
+    }
+    100% {
+      top: 100%;
+    }
+  }
+}
+
